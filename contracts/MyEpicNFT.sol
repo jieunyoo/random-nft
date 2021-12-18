@@ -18,6 +18,8 @@ contract MyEpicNFT is ERC721URIStorage {
   string[] firstWords = ["happy", "sad", "excited", "angry", "quiet", "noisy", "cheerful", "ecstatic", "roaring", "shy", "laughing", "giggling"];
   string[] secondWords = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Violet", "Black", "Indigo", "White", "Brown", "Magenta", "Ivory", "Fuschia", "Navy", "Olive"];
   string[] thirdWords = ["Penguin", "Cat", "Dog", "Fish", "Rabbit", "Snail", "Eagle", "Horse", "Cow", "Squid", "Octopus", "Beagle", "Mouse"];
+  
+  event NewEpicNFTMinted(address sender, uint256 tokenId);
 
   constructor() ERC721 ("SquareNFT", "SQUARE") {
     console.log("This is my NFT contract. Woah!");
@@ -47,12 +49,10 @@ contract MyEpicNFT is ERC721URIStorage {
 
   function makeAnEpicNFT() public {
     uint256 newItemId = _tokenIds.current();
-
     string memory first = pickRandomFirstWord(newItemId);
     string memory second = pickRandomSecondWord(newItemId);
     string memory third = pickRandomThirdWord(newItemId);
     string memory combinedWord = string(abi.encodePacked(first, second, third));
-
     string memory finalSvg = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
 
     // Get all the JSON metadata in place and base64 encode it.
@@ -71,31 +71,27 @@ contract MyEpicNFT is ERC721URIStorage {
             )
         )
     );
-
     // Just like before, we prepend data:application/json;base64, to our data.
     string memory finalTokenUri = string(
         abi.encodePacked("data:application/json;base64,", json)
     );
-
     console.log("\n--------------------");
-
-
-console.log(
-    string(
+    console.log(
+       string(
         abi.encodePacked(
             "https://nftpreview.0xdev.codes/?code=",
             finalTokenUri
         )
-    )
-);
+       )
+    );
     console.log("--------------------\n");
 
     _safeMint(msg.sender, newItemId);
     
     // Update your URI!!!
     _setTokenURI(newItemId, finalTokenUri);
-  
     _tokenIds.increment();
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+	emit NewEpicNFTMinted(msg.sender, newItemId);
   }
 }
