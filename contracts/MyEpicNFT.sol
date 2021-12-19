@@ -17,7 +17,7 @@ contract MyEpicNFT is ERC721URIStorage {
 
   string[] firstWords = ["happy", "sad", "excited", "angry", "quiet", "noisy", "cheerful", "ecstatic", "roaring", "shy", "laughing", "giggling"];
   string[] secondWords = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Violet", "Black", "Indigo", "White", "Brown", "Magenta", "Ivory", "Fuschia", "Navy", "Olive"];
-  string[] thirdWords = ["Penguin", "Cat", "Dog", "Fish", "Rabbit", "Snail", "Eagle", "Horse", "Cow", "Squid", "Octopus", "Beagle", "Mouse"];
+  string[] thirdWords = ["Penguin", "Cat", "Dog", "Fish", "Rabbit", "Snail", "Eagle", "Horse", "Cow", "Squid", "Octopus", "Beagle", "Mouse", "Bear", "Lion"];
   
   event NewEpicNFTMinted(address sender, uint256 tokenId);
 
