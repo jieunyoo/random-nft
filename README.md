@@ -1,15 +1,8 @@
-# Basic Sample Hardhat Project
+# Random NFT
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This project mines a random NFT on the Rinkeby test net. Users should connect their wallet, and then can mine a NFT.
 
-Try running some of the following tasks:
+The project is live at [random NFT](https://name-jieun-random-nft.jieun123.repl.co/). Note the link is using free hosting, so it most probably lag on startup.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+Some sample NFTs created are [here](https://testnets.opensea.io/tetras).
+The frontend code is under development, and can be browsed [here](https://replit.com/@jieun123/).
