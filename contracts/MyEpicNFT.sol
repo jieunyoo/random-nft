@@ -12,6 +12,7 @@ import { Base64 } from "./libraries/Base64.sol";
 contract MyEpicNFT is ERC721URIStorage {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
+  uint256 totalMinted;
 
   string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
@@ -91,7 +92,11 @@ contract MyEpicNFT is ERC721URIStorage {
     // Update your URI!!!
     _setTokenURI(newItemId, finalTokenUri);
     _tokenIds.increment();
+    totalMinted = _tokenIds.current();
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 	emit NewEpicNFTMinted(msg.sender, newItemId);
+  }
+  function getTotalMinted() public view returns (uint256) { 
+	return totalMinted;
   }
 }
